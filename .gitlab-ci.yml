@@ -1,0 +1,15 @@
+stages:
+  - deploy
+
+deploy_production:
+  stage: deploy
+  tags:
+    - runner
+  script:
+    - echo "Deploying to EC2..."
+    - cd /home/gitlab_automation/sample_project/
+    - git pull origin main
+    - source /home/gitlab_automation/env/bin/activate
+    - pip install -r requirements.txt
+    - python manage.py runserver
+
